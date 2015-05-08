@@ -20,6 +20,11 @@ class PotWellSolver{
   int num_gridpoints();
   int x_max();
   int x_min();
+  arma::vec x_axis();
+  double step_size();
+  int left_potential_well_boundary();
+  int right_potential_well_boundary();
+
   double unit_energy();
   double unit_potential();
   double unit_delta();
@@ -28,18 +33,23 @@ class PotWellSolver{
  private:
   Compound* compound_;
   PotWell* potential_well_;
+
   int num_gridpoints_;
   int x_max_;
   int x_min_;
+  arma::vec x_axis_;
+  double step_size_;
+  int left_potential_well_boundary_;
+  int right_potential_well_boundary_;
+
   void set_units();
   double unit_energy_;
   double unit_potential_;
   double unit_delta_;
   int num_bandmodel_ = 4;
-  arma::vec x_axis_;
-  double step_size_;
-  int left_potential_well_boundary_;
-  int right_potential_well_boundary_;
+
+  static constexpr double pi = 3.14159265359;
+
 
 
 
