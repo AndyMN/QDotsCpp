@@ -35,6 +35,14 @@ void PotWell::set_width(double width){
   width_ = width;
 }
 
+void PotWell::set_width_in_cm(double width_in_cm){
+  width_in_cm_ = width_in_cm;
+}
+
+double PotWell::width_in_cm(){
+  return width_in_cm_;
+}
+
 double PotWell::depth(){
   return depth_;
 }
