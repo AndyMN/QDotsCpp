@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1431043796 source:/home/andy/Documents/QDotsC++/QDots/main.cpp
+	<iostream>
+	<Eigen/Dense>
+
