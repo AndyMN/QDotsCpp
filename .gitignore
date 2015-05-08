@@ -1,0 +1,13 @@
+*.o
+*.so
+*.png
+*.vtk
+*.layout
+obj/**
+bin/**
+lib/**
+include/**
+build/**
+*~
+.[#]*
+[#]*[#]
