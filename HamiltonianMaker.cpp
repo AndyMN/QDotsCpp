@@ -61,7 +61,7 @@ arma::cx_mat HamiltonianMaker::hamiltonian_luttinger_kohn(double k){
 
   if (potential_well_->num_direction() == 1) {
     diagonal_P_element.real((y1/pow(pi,2)) * (pow(k,2) + 2.0/pow(step_size_,2)));
-    subdiagonal_P_element.real((-y1/(pow(step_size_,2)) * pow(pi,2)));
+    subdiagonal_P_element.real(-y1/(pow(step_size_,2) * pow(pi,2)));
     superdiagonal_P_element = subdiagonal_P_element;
 
     diagonal_Q_element.real((y2/pow(pi,2)) * (-2*pow(k,2) + 2.0/pow(step_size_,2)));
@@ -71,6 +71,7 @@ arma::cx_mat HamiltonianMaker::hamiltonian_luttinger_kohn(double k){
     diagonal_R_element.real((sqrt(3)*y2/pow(pi,2)) * (-2.0/pow(step_size_,2)));
     subdiagonal_R_element.real((sqrt(3)/pow(pi,2)) * (y2/pow(step_size_,2)));
     superdiagonal_R_element.real((sqrt(3)/pow(pi,2)) * (y2/pow(step_size_,2)));
+
 
 	subdiagonal_S_element.imag(sqrt(3)*y3*k/(pow(pi,2)*step_size_));
     superdiagonal_S_element = -subdiagonal_S_element;
@@ -123,8 +124,9 @@ arma::cx_mat HamiltonianMaker::hamiltonian_luttinger_kohn(double k){
 
   arma::cx_vec potential(num_gridpoints_);
   arma::cx_double complex_unit_potential(unit_potential_,0);
-  potential.fill(complex_unit_potential);
-  V = diagmat(potential);
+  potential.subvec(0, left_potential_well_boundary_).fill(complex_unit_potential);
+  potential.subvec(right_potential_well_boundary_, num_gridpoints_-1).fill(complex_unit_potential);
+  V.diag() = potential;
 
   P.diag() = diagonal_P;
   P.diag(-1) = subdiagonal_P;
@@ -146,12 +148,12 @@ arma::cx_mat HamiltonianMaker::hamiltonian_luttinger_kohn(double k){
 
   // FIRST ROW
   luttinger_kohn_hamiltonian.submat(0, 0, num_gridpoints_-1, num_gridpoints_-1) = P+Q+V;
-  luttinger_kohn_hamiltonian.submat(0, num_gridpoints_, num_gridpoints_-1, 2*num_gridpoints_-1) = -1*S;
+  luttinger_kohn_hamiltonian.submat(0, num_gridpoints_, num_gridpoints_-1, 2*num_gridpoints_-1) = -S;
   luttinger_kohn_hamiltonian.submat(0, 2*num_gridpoints_, num_gridpoints_-1, 3*num_gridpoints_-1) = R;
   //luttinger_kohn_hamiltonian.submat(0, 3*num_gridpoints_, num_gridpoints_-1, 4*num_gridpoints_-1) = THIS IS A ZERO BLOCK
 
   // SECOND ROW
-  luttinger_kohn_hamiltonian.submat(num_gridpoints_, 0, 2*num_gridpoints_-1, num_gridpoints_-1) = -1*S.t();
+  luttinger_kohn_hamiltonian.submat(num_gridpoints_, 0, 2*num_gridpoints_-1, num_gridpoints_-1) = -S.t();
   luttinger_kohn_hamiltonian.submat(num_gridpoints_, num_gridpoints_, 2*num_gridpoints_-1, 2*num_gridpoints_-1) = P-Q+V;
   //luttinger_kohn_hamiltonian.submat(num_gridpoints_, 2*num_gridpoints_, 2*num_gridpoints_-1, 3*num_gridpoints_-1) = THIS IS A ZERO BLOCK
   luttinger_kohn_hamiltonian.submat(num_gridpoints_, 3*num_gridpoints_, 2*num_gridpoints_-1, 4*num_gridpoints_-1) = R;
@@ -215,5 +217,13 @@ double HamiltonianMaker::unit_energy(){
 
 double HamiltonianMaker::unit_potential(){
   return unit_potential_;
+}
+
+PotWell* HamiltonianMaker::potential_well(){
+  return potential_well_;
+}
+
+Compound* HamiltonianMaker::compound(){
+  return compound_;
 }
 
