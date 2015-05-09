@@ -8,7 +8,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="QDots">
-				<Option output="bin/Debug/QDots" prefix_auto="1" extension_auto="1" />
+				<Option output="QDots" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -36,6 +36,10 @@
 		</Compiler>
 		<Unit filename="Compound.cpp" />
 		<Unit filename="Compound.h" />
+		<Unit filename="PotWell.cpp" />
+		<Unit filename="PotWell.h" />
+		<Unit filename="PotWellSolver.cpp" />
+		<Unit filename="PotWellSolver.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
