@@ -5,7 +5,6 @@
 *.layout
 *.text
 *.txt
-main.cpp
 QDots
 obj/**
 bin/**
