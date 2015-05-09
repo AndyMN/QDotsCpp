@@ -3,6 +3,8 @@
 *.png
 *.vtk
 *.layout
+*.cpp
+main.cpp
 QDots
 obj/**
 bin/**
