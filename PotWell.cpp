@@ -55,7 +55,7 @@ std::string PotWell::direction(){
   return direction_;
 }
 
-double PotWell::num_direction(){
+int PotWell::num_direction(){
   return num_direction_;
 }
 

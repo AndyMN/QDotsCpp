@@ -16,14 +16,14 @@ class PotWell{
   double depth();
   double width();
   double width_in_cm();
-  double num_direction();
+  int num_direction();
   std::string direction();
 
  private:
   double depth_;
   double width_;
   double width_in_cm_ = 100*exp10(-8);
-  double num_direction_;
+  int num_direction_;
   std::string direction_;
 
 
