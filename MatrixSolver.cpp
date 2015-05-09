@@ -133,8 +133,8 @@ arma::vec MatrixSolver::rotated_heavy_hole_mixing(arma::vec k_vector){
       //POTWELL IN X DIRECTION SO ROTATION TO THE Z DIRECTION
 
       rotated_heavy_hole1 = sqrt(2)/4 * (heavy_hole1 + heavy_hole2) + sqrt(6)/4 * (light_hole1 + light_hole2);
-      rotated_light_hole1 = sqrt(6)/4 * (heavy_hole2 - heavy_hole1) + sqrt(2)/4 * (-1*light_hole1 - light_hole2);
-      rotated_light_hole2 = sqrt(6)/4 * (heavy_hole1 + heavy_hole2) + sqrt(2)/4 * (-1*light_hole1 - light_hole2);
+      rotated_light_hole1 = sqrt(6)/4 * (heavy_hole2 - heavy_hole1) + sqrt(2)/4 * (-light_hole1 - light_hole2);
+      rotated_light_hole2 = sqrt(6)/4 * (heavy_hole1 + heavy_hole2) + sqrt(2)/4 * (-light_hole1 - light_hole2);
       rotated_heavy_hole2 = sqrt(2)/4 * (heavy_hole2 - heavy_hole1) + sqrt(6)/4 * (light_hole1 - light_hole2);
 
     }
