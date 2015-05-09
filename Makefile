@@ -3,12 +3,12 @@ CXXFLAGS = -Wall
 CXXFLAGS += -std=c++0x
 CXXFLAGS += -O2
 
-INCLUDES = -I /usr/include -I /home/andy/armadillo/include -I /home/andy/armadillo/include/armadillo_bits
+INCLUDES = -I /usr/include -I /home/andy/armadillo/include
 CXXFLAGS += ${INCLUDES}
-LIBS = -L /usr/lib -L /usr/local/lib/root 
-LIBFLAGS = -lopenblas -llapack `root-config --libs`
-DEPENDENCIES = Compound.h PotWell.h HamiltonianMaker.h
-OBJECTS = main.o Compound.o PotWell.o HamiltonianMaker.o
+LIBS = -L /usr/lib
+LIBFLAGS = -lopenblas -llapack -lboost_system -lboost_iostreams -lboost_filesystem
+DEPENDENCIES = Compound.h PotWell.h HamiltonianMaker.h MatrixSolver.h
+OBJECTS = main.o Compound.o PotWell.o HamiltonianMaker.o MatrixSolver.o
 
 all: QDots
 
