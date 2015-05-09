@@ -3,7 +3,8 @@
 *.png
 *.vtk
 *.layout
-*.cpp
+*.text
+*.txt
 main.cpp
 QDots
 obj/**
