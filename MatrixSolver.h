@@ -12,6 +12,8 @@ class MatrixSolver{
   arma::vec rotated_heavy_hole_mixing(arma::vec k_vector);
   arma::vec rotated_light_hole_mixing(arma::vec k_vector);
 
+  HamiltonianMaker* hamiltonian_maker();
+
 
  private:
   HamiltonianMaker* hamiltonian_maker_;
