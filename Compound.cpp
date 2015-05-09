@@ -10,11 +10,11 @@ Compound::Compound(std::vector<double> params, std::string compound_name){
 }
 
 void Compound::set_compound_name(std::string compound_name){
-  if (params_ == gaas_params){
+  if (params_ == gaas_params) {
     compound_name_ = "GaAs";
-  } else if (params_ == si_params){
+  } else if (params_ == si_params) {
     compound_name_ = "Si";
-  } else{
+  } else {
     compound_name_ = compound_name;
   }
 
