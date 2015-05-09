@@ -36,10 +36,12 @@
 		</Compiler>
 		<Unit filename="Compound.cpp" />
 		<Unit filename="Compound.h" />
+		<Unit filename="HamiltonianMaker.cpp" />
+		<Unit filename="HamiltonianMaker.h" />
+		<Unit filename="MatrixSolver.cpp" />
+		<Unit filename="MatrixSolver.h" />
 		<Unit filename="PotWell.cpp" />
 		<Unit filename="PotWell.h" />
-		<Unit filename="PotWellSolver.cpp" />
-		<Unit filename="PotWellSolver.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
