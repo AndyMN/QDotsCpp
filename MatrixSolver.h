@@ -17,6 +17,7 @@ class MatrixSolver{
 
  private:
   HamiltonianMaker* hamiltonian_maker_;
+  arma::vec mixing_calculator(std::string mixing_result, arma::vec k_vector);
 
 
 };

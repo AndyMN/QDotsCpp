@@ -24,11 +24,13 @@ int main(int argc, char** argv){
   arma::vec heavy_hole_fractions_x = matrix_solver_x.heavy_hole_mixing(k_vector);
   arma::vec light_hole_fractions_x = matrix_solver_x.light_hole_mixing(k_vector);
   arma::vec rotated_heavy_hole_fractions_x = matrix_solver_x.rotated_heavy_hole_mixing(k_vector);
+  arma::vec rotated_light_hole_fractions_x = matrix_solver_x.rotated_light_hole_mixing(k_vector);
 
 
   arma::mat hh_x = arma::zeros<arma::mat>(num_elem_kvec, 2);
   arma::mat lh_x = arma::zeros<arma::mat>(num_elem_kvec, 2);
   arma::mat rot_hh_x = arma::zeros<arma::mat>(num_elem_kvec, 2);
+  arma::mat rot_lh_x = arma::zeros<arma::mat>(num_elem_kvec, 2);
 
   hh_x.col(0) = k_vector;
   hh_x.col(1) = heavy_hole_fractions_x;
@@ -38,6 +40,9 @@ int main(int argc, char** argv){
 
   rot_hh_x.col(0) = k_vector;
   rot_hh_x.col(1) = rotated_heavy_hole_fractions_x;
+
+  rot_lh_x.col(0) = k_vector;
+  rot_lh_x.col(1) = rotated_light_hole_fractions_x;
 
   PotWell potential_well_z("z");
   HamiltonianMaker hamiltonian_maker_z(&GaAs, &potential_well_z);
@@ -56,12 +61,13 @@ int main(int argc, char** argv){
   lh_z.col(1) = light_hole_fractions_z;
 
 
-
+  gp << "set term png\n";
+  gp << "set output 'HHRotHALLELUJA.png'\n";
   gp << "set xrange [-3:3]\nset yrange [0:1]\n";
   gp << "plot ";
-  gp << gp.binFile1d(hh_z, "record") << "with lines title 'heavy hole_z'";
+  gp << gp.binFile1d(lh_z, "record") << "with lines title 'heavy hole_z'";
   gp << ", ";
-  gp << gp.binFile1d(rot_hh_x, "record") << "with lines title 'rot heavy hole_x'";
+  gp << gp.binFile1d(rot_lh_x, "record") << "with points title 'rot heavy hole_x'";
   gp << std::endl;
 
 
